@@ -57,6 +57,26 @@ export const useNotes = create(
         }))
       },
 
+      /**
+       * Patch several SOAP sections in one write. Adding a diagnosis also
+       * creates its plan block, and those two edits have to land together or
+       * an interrupted render can show a plan for a diagnosis that is not
+       * there yet.
+       */
+      patchSections(id, patches) {
+        set((state) => ({
+          notes: state.notes.map((n) => {
+            if (n.id !== id) return n
+            const sections = { ...n.sections }
+            for (const [key, patch] of Object.entries(patches)) {
+              sections[key] = { ...sections[key], ...patch }
+            }
+            return touch({ ...n, sections })
+          }),
+          lastSavedAt: new Date().toISOString(),
+        }))
+      },
+
       deleteNote(id) {
         set((state) => ({ notes: state.notes.filter((n) => n.id !== id), lastSavedAt: new Date().toISOString() }))
       },

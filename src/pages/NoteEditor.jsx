@@ -9,6 +9,7 @@ import PlanSection from '../components/sections/PlanSection.jsx'
 import SubjectiveSection from '../components/sections/SubjectiveSection.jsx'
 import { SPECIALTIES } from '../lib/clinical.js'
 import { completeness, displayTitle, NOTE_STATUS } from '../lib/note.js'
+import { suggestPlanFor } from '../lib/planSuggestions.js'
 import { getTemplate } from '../lib/templates.js'
 import { useNotes } from '../store/useNotes.js'
 
@@ -55,9 +56,13 @@ export default function NoteEditor() {
   const addNote = useNotes((s) => s.addNote)
   const patchNote = useNotes((s) => s.patchNote)
   const patchSection = useNotes((s) => s.patchSection)
+  const patchSections = useNotes((s) => s.patchSections)
 
   const note = id ? notes.find((n) => n.id === id) : null
   const [open, setOpen] = useState({ S: true, O: false, A: false, P: false })
+  // Explanations from the plan suggestion engine, keyed by plan block id.
+  // Owned here because blocks get created from both A and P.
+  const [suggestionNotes, setSuggestionNotes] = useState({})
   // Re-render the "saved Xm ago" label without touching the store.
   const [, setTick] = useState(0)
 
@@ -95,12 +100,37 @@ export default function NoteEditor() {
     )
   }
 
+  /**
+   * Adding a diagnosis also builds its plan block, so the two sections are
+   * written together. The Plan panel opens as well — otherwise the work
+   * happens behind a collapsed header and looks like nothing happened.
+   */
+  function addDiagnosis(dx) {
+    const { block, notes: explanation } = suggestPlanFor(dx, note.sections.S.allergies, dx.id)
+    patchSections(note.id, {
+      A: { diagnoses: [...note.sections.A.diagnoses, dx] },
+      P: { blocks: [...note.sections.P.blocks, block] },
+    })
+    if (explanation.length) setSuggestionNotes((prev) => ({ ...prev, [block.id]: explanation }))
+    setOpen((prev) => ({ ...prev, P: true }))
+  }
+
   const percent = completeness(note)
   const hints = hintFor(note)
   const panels = [
     { letter: 'S', title: 'Subjective', body: <SubjectiveSection data={note.sections.S} patch={(p) => patchSection(note.id, 'S', p)} /> },
     { letter: 'O', title: 'Objective', body: <ObjectiveSection data={note.sections.O} patch={(p) => patchSection(note.id, 'O', p)} /> },
-    { letter: 'A', title: 'Assessment', body: <AssessmentSection data={note.sections.A} patch={(p) => patchSection(note.id, 'A', p)} /> },
+    {
+      letter: 'A',
+      title: 'Assessment',
+      body: (
+        <AssessmentSection
+          data={note.sections.A}
+          patch={(p) => patchSection(note.id, 'A', p)}
+          onAddDiagnosis={addDiagnosis}
+        />
+      ),
+    },
     {
       letter: 'P',
       title: 'Plan',
@@ -108,7 +138,10 @@ export default function NoteEditor() {
         <PlanSection
           data={note.sections.P}
           diagnoses={note.sections.A.diagnoses}
+          allergies={note.sections.S.allergies}
           patch={(p) => patchSection(note.id, 'P', p)}
+          suggestionNotes={suggestionNotes}
+          setSuggestionNotes={setSuggestionNotes}
         />
       ),
     },

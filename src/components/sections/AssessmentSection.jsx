@@ -78,7 +78,7 @@ function DiagnosisSearch({ onPick, disabled }) {
   )
 }
 
-export default function AssessmentSection({ data, patch }) {
+export default function AssessmentSection({ data, patch, onAddDiagnosis }) {
   const { diagnoses } = data
 
   function setDiagnoses(next) {
@@ -95,10 +95,11 @@ export default function AssessmentSection({ data, patch }) {
 
   return (
     <div className="space-y-5">
-      <DiagnosisSearch
-        disabled={diagnoses.length >= MAX_DIAGNOSES}
-        onPick={(dx) => setDiagnoses([...diagnoses, dx])}
-      />
+      <DiagnosisSearch disabled={diagnoses.length >= MAX_DIAGNOSES} onPick={onAddDiagnosis} />
+      <p className="-mt-3 text-xs text-ink-400">
+        Adding a diagnosis also builds its Plan block — orders, education, follow-up, and a first-line
+        prescription checked against the allergies you documented.
+      </p>
 
       {diagnoses.length === 0 ? (
         <p className="rounded-md border border-dashed border-ink-200 px-3 py-6 text-center text-sm text-ink-400">
