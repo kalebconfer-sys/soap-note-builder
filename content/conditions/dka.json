@@ -1,0 +1,104 @@
+{
+  "id": "dka",
+  "title": "Diabetic Ketoacidosis (DKA)",
+  "system": "Endocrine",
+  "specialty": ["family", "adult-gero", "acute-care"],
+  "icd10": [
+    { "code": "E10.10", "label": "Type 1 diabetes mellitus with ketoacidosis without coma" },
+    { "code": "E11.10", "label": "Type 2 diabetes mellitus with ketoacidosis without coma" }
+  ],
+
+  "definition": "Acute metabolic emergency defined by the triad of hyperglycemia, anion-gap metabolic acidosis, and ketonemia, caused by absolute insulin deficiency.",
+
+  "typical_patient": "Younger patient with type 1 DM — frequently the first presentation of undiagnosed T1DM. Also occurs in ketosis-prone type 2 DM.",
+
+  "onset": "Rapid — hours to under 24 hours.",
+
+  "pathophysiology": "Absolute insulin deficiency removes the brake on lipolysis. Free fatty acids flood the liver and are converted to ketoacids (beta-hydroxybutyrate, acetoacetate) faster than they can be buffered. Counter-regulatory hormones (glucagon, cortisol, catecholamines) simultaneously drive gluconeogenesis and glycogenolysis. Result: hyperglycemia plus a true anion-gap acidosis. Osmotic diuresis from glucosuria then produces profound volume and potassium depletion — total body potassium is low even when serum potassium reads normal or high.",
+
+  "precipitants": [
+    "Infection — the single most common trigger",
+    "Insulin omission or pump failure",
+    "New-onset type 1 diabetes",
+    "Myocardial infarction, stroke, pancreatitis",
+    "SGLT2 inhibitors — can cause euglycemic DKA with near-normal glucose"
+  ],
+
+  "key_findings": [
+    { "label": "Glucose", "value": "Typically 250–600 mg/dL. May be under 250 in euglycemic DKA." },
+    { "label": "Arterial pH", "value": "Under 7.30" },
+    { "label": "Serum bicarbonate", "value": "Under 18 mEq/L" },
+    { "label": "Anion gap", "value": "Elevated, over 12" },
+    { "label": "Ketones", "value": "Positive — beta-hydroxybutyrate preferred over urine ketones" },
+    { "label": "Serum osmolality", "value": "Variable, usually under 320 mOsm/kg" },
+    { "label": "Mental status", "value": "Usually alert unless severe" },
+    { "label": "Mortality", "value": "Roughly 1–5%" }
+  ],
+
+  "symptoms": [
+    "Polyuria, polydipsia, weight loss",
+    "Nausea, vomiting, diffuse abdominal pain",
+    "Kussmaul respirations — deep and labored, blowing off CO2",
+    "Fruity or acetone breath odor",
+    "Dry mucous membranes, tachycardia, orthostatic hypotension"
+  ],
+
+  "plan_bullets": [
+    { "category": "Disposition", "text": "Admit for inpatient management; ICU-level care for pH under 7.0, altered mental status, or hemodynamic instability." },
+    { "category": "Fluids", "text": "Begin isotonic 0.9% NaCl 15–20 mL/kg IV over the first hour. Estimated deficit 3–6 L." },
+    { "category": "Fluids", "text": "After the first hour, transition to 0.45% NaCl if corrected sodium is normal or elevated; continue 0.9% NaCl if corrected sodium is low." },
+    { "category": "Electrolytes", "text": "Check serum potassium BEFORE starting insulin. If K under 3.3 mEq/L, hold insulin and replete potassium first." },
+    { "category": "Electrolytes", "text": "If K is 3.3–5.2 mEq/L, add 20–30 mEq potassium per liter of IV fluid to maintain K at 4–5." },
+    { "category": "Insulin", "text": "Start regular insulin IV infusion at 0.1 units/kg/hr. Target a glucose decline of 50–75 mg/dL/hr." },
+    { "category": "Insulin", "text": "When glucose reaches 200 mg/dL, add dextrose (D5) to IV fluids and continue the insulin infusion until the anion gap closes." },
+    { "category": "Insulin", "text": "Overlap subcutaneous basal insulin with the IV infusion by 1–2 hours before discontinuing the drip." },
+    { "category": "Monitoring", "text": "BMP and glucose every 2–4 hours until the anion gap closes and the patient is clinically stable." },
+    { "category": "Workup", "text": "Identify the precipitant: CBC with differential, urinalysis and culture, chest radiograph, ECG, and troponin as indicated." }
+  ],
+
+  "medications": [
+    { "drug": "Regular insulin (IV infusion)", "dose": "0.1 units/kg/hr; optional 0.1 units/kg IV bolus", "note": "IV route only in acute DKA. Never start before potassium is known." },
+    { "drug": "0.9% Sodium chloride", "dose": "15–20 mL/kg IV over hour 1", "note": "Fluids come first — they lower glucose before insulin does." },
+    { "drug": "Potassium chloride", "dose": "20–30 mEq/L of IV fluid when K is 3.3–5.2", "note": "Insulin drives K intracellularly. Unreplaced, this causes fatal arrhythmia." },
+    { "drug": "Sodium bicarbonate", "dose": "Consider only if pH under 6.9", "note": "Routine use is not supported and may worsen outcomes." }
+  ],
+
+  "pearls": [
+    "Fluids before insulin, and potassium before insulin. Insulin given to a hypokalemic patient can kill them.",
+    "Anion gap = Na − (Cl + HCO3). Normal is 8–12.",
+    "Corrected sodium = measured Na + 1.6 for every 100 mg/dL of glucose above 100.",
+    "Do not stop the insulin drip when glucose normalizes — stop it when the GAP closes. Add dextrose instead.",
+    "Euglycemic DKA: a patient on an SGLT2 inhibitor can be frankly acidotic with a glucose of 180. Check ketones and the gap on any SGLT2 patient with nausea and vomiting.",
+    "Roughly a third of patients present with overlapping DKA and HHS features. It is a spectrum, not two boxes."
+  ],
+
+  "when_to_refer": [
+    "All confirmed DKA — emergency department, then inpatient. This is not managed outpatient.",
+    "ICU admission for pH under 7.0, bicarbonate under 5, altered mental status, or hemodynamic instability.",
+    "Pediatric DKA — escalate early; children are at risk for cerebral edema during correction.",
+    "New-onset type 1 diabetes — endocrinology consult before discharge."
+  ],
+
+  "patient_education": [
+    "Sick day rule: never stop your insulin when you are ill, even if you are not eating. Illness raises your insulin needs, it does not lower them.",
+    "Check your blood glucose every 4 hours while sick.",
+    "Check ketones any time your glucose is over 250 mg/dL, or any time you have nausea and vomiting.",
+    "Drink sugar-free fluids steadily to stay ahead of dehydration.",
+    "Call immediately for moderate or large ketones, vomiting that stops you keeping fluids down, glucose over 300 that will not come down, or trouble breathing."
+  ],
+
+  "resolution_criteria": [
+    "Glucose under 200 mg/dL, AND two of the following:",
+    "Serum bicarbonate 15 mEq/L or greater",
+    "Venous pH above 7.30",
+    "Calculated anion gap 12 mEq/L or less"
+  ],
+
+  "sources": [
+    { "label": "ADA Standards of Care in Diabetes — Diabetes Care", "url": "https://diabetesjournals.org/care/issue" },
+    { "label": "ADA consensus report on hyperglycemic crises in adults", "url": "https://diabetesjournals.org/care" }
+  ],
+
+  "reviewed_by": "PENDING — requires licensed clinician review before publication",
+  "reviewed_date": null
+}
