@@ -47,7 +47,18 @@ export default function App() {
 
       <footer className="no-print mx-auto max-w-6xl px-4 pb-10 pt-4 text-xs text-ink-400">
         Educational tool for NP and PA students. Not a medical device and not for
-        real patient information. Notes are stored in this browser only.
+        real patient information. Notes are stored in this browser only.{' '}
+        Printable companions (SOAP template pack, SNAPPS one-pager, condition
+        cards) by the same RN are in{' '}
+        <a
+          className="underline"
+          href="https://www.etsy.com/shop/TheHomeCareRN"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          the Etsy shop
+        </a>
+        .
       </footer>
     </div>
   )
